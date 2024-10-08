@@ -1,0 +1,44 @@
+1. web.xml 에 한글 처리
+2. pom.xml에 dependency 설정
+3. web.xml 가서 경로 확인
+4. root-context 가서 bean 3가지 설정
+5. album.mybatis 패키지 만들고 두 파일(SqlMapConfig, album) 만들기
+6. doc 타입 설정
+7. web.xml 가서 추가
+	<servlet>
+		<servlet-name>album</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/album-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>album</servlet-name>
+		<url-pattern>*.ab</url-pattern>
+	</servlet-mapping>
+	가서 컨트롤러 클래스 어디있는지 알려주기
+8. album-servlet 만들고 basepackage 바꾸고 유효성검사 코드 추가)
+
+
+drop table albums;
+create table albums(
+	num number primary key,
+	title varchar2(20),
+	singer varchar2(20),
+	price number,
+	day date default sysdate
+);
+
+drop sequence albums_seq;
+create sequence albums_seq 
+minvalue 1
+start with 1
+nocache;
+
+insert into albums values(albums_seq.nextval,'fake love','bts',2000,default);
+insert into albums values(albums_seq.nextval,'다이너마이트','bts',3000,default);
+commit;
+select * from albums;
