@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<bean id="myStart" class="com.spring.ex1.Start"></bean>
+	<bean id="myHello" class="com.spring.ex1.Hello"></bean>
+	<!-- com.spring.ex1.Hello myHello = new com.spring.ex1.Hello(); -->
+	<bean id="myStudentImpl" class="com.spring.ex1.StudentImpl">
+		<property name="name" value="조정석"/>
+		<property name="age" value="10"/>
+		<property name="gradeNum" value="3"/>
+		<property name="classNum" value="5"/>			
+	</bean>
+	<bean id="myWorkerImpl" class="com.spring.ex1.WorkerImpl">
+		<property name="name" value="윤아"/>
+		<property name="age" value="35"/>
+		<property name="job" value="개발자"/>
+	</bean>
+	<bean id="myGoodBye" class="com.spring.ex1.GoodBye"></bean>
+	<bean id="myEnd" class="com.spring.ex1.End"></bean>
+	
+
+	<aop:config>
+		<aop:aspect ref="myStart" order="0">
+			<aop:before method="start" pointcut="execution(* com.spring.ex1.StudentImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myHello" order="1">
+			<aop:before method="hello" pointcut="execution(* com.spring.ex1.StudentImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myEnd">
+			<aop:after method="end" pointcut="execution(* com.spring.ex1.StudentImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myStart">
+			<aop:before method="start" pointcut="execution(* com.spring.ex1.WorkerImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myGoodBye" order="1">
+			<aop:after method="goodBye" pointcut="execution(* com.spring.ex1.WorkerImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myEnd" order="0">
+			<aop:after method="end" pointcut="execution(* com.spring.ex1.WorkerImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

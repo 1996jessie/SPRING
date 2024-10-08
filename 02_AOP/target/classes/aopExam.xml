@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<bean id="myLogin" class="com.spring.ex2.Login"></bean>
+	<bean id="myOrderImpl" class="com.spring.ex2.OrderImpl"></bean>
+	<bean id="myBoardImpl" class="com.spring.ex2.BoardImpl"></bean>
+	<bean id="myDao" class="com.spring.ex2.Dao"></bean>
+	<bean id="myLogout" class="com.spring.ex2.Logout"></bean>
+	
+	
+	
+	<!-- 
+	리턴 타입 아무거나 com.spring.ex2 패키지 안에 OrderImpl 클래스 안에 파라미터가 없는 아무 메서드 호출 
+	하기 전에 myLogin으로 관리하는 클래스에 있는 login 메서드 먼저 실행해라
+	
+	aspect : 공통사항
+	pointcut : 핵심사항
+	
+	이전/ 이후에 해야 할 일이 여러개면 순서를 정해줘야 함(숫자는 상대적)
+	before : 숫자 작은 것부터
+	after : 숫자 큰 것부터
+	-->
+	<aop:config>
+		<aop:aspect ref="myLogin">
+			<aop:before method="login" pointcut="execution(* com.spring.ex2.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myDao" order="1">
+			<aop:after method="dao" pointcut="execution(* com.spring.ex2.OrderImpl.*())"/>
+		</aop:aspect>		
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myLogout" order="0">
+			<aop:after method="logout" pointcut="execution(* com.spring.ex2.OrderImpl.*())"/>
+		</aop:aspect>		
+	</aop:config>
+	
+	
+	<aop:config>
+		<aop:aspect ref="myLogin">
+			<aop:before method="login" pointcut="execution(* com.spring.ex2.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myDao" order="1">
+			<aop:after method="dao" pointcut="execution(* com.spring.ex2.BoardImpl.*())"/>
+		</aop:aspect>		
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="myLogout" order="0">
+			<aop:after method="logout" pointcut="execution(* com.spring.ex2.BoardImpl.*())"/>
+		</aop:aspect>		
+	</aop:config>
+	<!-- namespace 에서 선택 -->
+</beans>
