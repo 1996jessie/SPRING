@@ -1,0 +1,36 @@
+drop table cafe;
+create table cafe(
+	num number not null,
+	category varchar2(20) not null,
+	menu varchar2(20) not null,
+	temp varchar2(10) not null,
+	amount varchar2(10) not null,
+	req varchar2(100) not null
+);
+drop sequence cf_seq;
+
+create sequence cf_seq
+	increment by 1
+	start with 1 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+insert into cafe
+values(cf_seq.nextval,'커피','아메리카노','아이스','2','얼음적게');
+
+insert into cafe
+values(cf_seq.nextval,'논커피','녹차라떼','핫','3','많이뜨겁게');
+
+col num for 99
+col category for a10
+col menu for a10
+col temp for a10
+col amount for a10
+col req for a10
+
+commit;
+
+select * from cafe;
+
+
