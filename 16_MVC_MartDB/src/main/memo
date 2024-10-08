@@ -1,0 +1,20 @@
+drop sequence m_seq;
+create sequence m_seq
+minvalue 1
+start with 1
+nocache;
+
+drop table mart;
+create table mart(
+	num number primary key,
+	id varchar2(10),
+	pw varchar2(10),
+	product varchar2(50),
+	time varchar2(10),
+	approve varchar2(10),
+	agree varchar2(10)
+);
+
+commit;
+
+select * from mart;
