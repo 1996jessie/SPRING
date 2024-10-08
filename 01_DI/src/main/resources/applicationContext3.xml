@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--  
+	<bean id="calc" class="sample5.CalcBeanImpl">
+		<property name="su1" value="100"/>
+		<constructor-arg type="int" value="33"/>
+	</bean>
+	-->
+	<bean id="calc" class="sample5.CalcBeanImpl" p:su1="100" c:su2="33"/>
+	
+	<!-- 
+	<bean id="mes" class="sample5.MessageBeanImpl">
+	-->
+		<!-- 		
+		<constructor-arg type="String" value="아이유"/> 
+		-->
+	<!-- 	
+		<constructor-arg>
+	-->	
+			<!-- 
+			<value> 아이유 </value> 
+			-->
+	<!--		
+			<value type = "java.lang.String">아이유</value>
+		</constructor-arg>
+		<property name="greeting" value="Hello"/>
+	</bean>
+	-->
+	<bean id="mes" class="sample5.MessageBeanImpl" c:name="아이유" p:greeting="Hello"/>
+	
+</beans>
+
+<!-- type 안 써도 됨 -->

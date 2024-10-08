@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="subject" class="sample4.SubjectImpl">
+		<constructor-arg index="2">
+			<value type="int">70</value>		
+		</constructor-arg>
+			<constructor-arg index="0">
+			<value type="int">80</value>		
+		</constructor-arg>
+		<constructor-arg value="90" index="1"/>
+	</bean>
+
+<!-- index 없으면 순서대로, index 있으면 0부터 들어감 -->
+</beans>

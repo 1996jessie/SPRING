@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+	<bean id="person" class="sample6.PersonImpl">
+		<constructor-arg value="아이유"/>
+		<constructor-arg value="20"/>
+		<constructor-arg value="160.0"/>
+		<constructor-arg value="음악감상"/>
+	</bean>
+	 -->
+	<bean id="person" class="sample6.PersonImpl" c:name="아이유" c:age="20" c:height="160.0" c:hobby="음악감상"/>
+	<!--
+	<bean id="student" class="sample6.StudentImpl">
+		<property name="kor" value="100"/>
+		<property name="eng" value="60"/>
+		<property name="per" ref="person"/>
+	</bean>
+ 	-->
+ 	<bean id="student" class="sample6.StudentImpl" p:kor="100" p:eng="60" p:per-ref="person"/>
+ 	<!--
+	<bean id="info" class="sample6.MyInfo">
+		<property name="per" ref="person"/>
+		<property name="stu" ref="student"/>
+	</bean>
+	-->
+	<bean id="info" class="sample6.MyInfo" p:per-ref="person" p:stu-ref="student"/>
+	
+</beans>

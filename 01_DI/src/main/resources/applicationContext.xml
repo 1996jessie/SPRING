@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- c, p namespaces 사용 -->
+	<!-- 
+	sample3.PointImpl point = new sample3.PointImpl(); 
+	point.setXpos(3.0);
+	point.setYpos(4.0);
+	-->
+	<!-- 
+	<bean id="point" class="sample3.PointImpl">
+		<property name="xpos">
+			<value type = "double"> 3.0 </value>
+		</property>
+		<property name="ypos">
+			<value type = "double"> 4.0 </value>
+		</property>
+	</bean>
+	-->
+	<bean id="point" class="sample3.PointImpl" p:xpos="3.0" p:ypos="4.0"/> <!-- setter 주입 시 매서드 이름과 일치 -->
+	
+	<!-- 
+	CircleImpl circle = new CircleImpl(radius, point); 
+	-->
+	<!-- 
+	<bean id="circle" class="sample3.CircleImpl">
+		<constructor-arg>
+			<value type="double"> 10.0 </value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="point"/>
+		</constructor-arg>
+	</bean>
+	-->
+	<bean id="circle" class="sample3.CircleImpl" c:rad="10.0" c:point-ref="point"/> <!-- 생성자 주입 시 매개변수 이름과 일치 -->
+	
+
+</beans>
+
+<!--scr/main/resources - other - spring - Spring Bean - applicationContext.xml -->
+
+		<!--  
+		double radius = 10.0;
+		PointImpl point = new PointImpl();
+		
+		point.setXpos(3.0);
+		point.setYpos(4.0);
+
+		CircleImpl circle = new CircleImpl(radius, point);
+		circle.display();
+		-->
+		
+		<!-- 		
+		<jsp:useBean id = "point" class = "sample3.PointImpl">
+			<jsp:setProperty name = "point" property = "xpos" value = "3.0"/>
+			<jsp:setProperty name = "point" property = "ypos" value = "4.0"/>
+		</jsp:useBean>
+		
+		 -->
