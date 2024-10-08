@@ -1,0 +1,13 @@
+1. pom.xml 가서 필요한 jar 파일을 가져옴
+2. web.xml 가서 한글 설정, 프로젝트 전반에 거쳐 설정할 값 확인하러 root-context.xml로 이동
+3. root-context.xml 가서 프로젝트 전반에 거쳐 사용할 것들 가져옴
+	실행하면 마지막 패키지명/만 나옴(프로젝트명/프로젝트명/~~/마지막 패키지명/)
+	DispatcherServlet이 /에 대한 요청 받음
+4. servlet-context.xml로 이동
+	객체 만들고 setter로 두가지 넘기면 이동할 경로가 만들어짐(중간부분 안 정해진 상태)
+5. 요청을 처리할 com.spring.ex 훑어봐라(/ 요청 처리할 컨트롤러 위치 알려줌)
+	homeController 가서 / 요청 처리할 수 있는 메서드 자동으로 호출됨
+	오늘 날짜 가져다가 형식을 만들어서 serverTime 속성 설정
+	home을 리턴해서 경로가 /WEB-INF/views/home.jsp 로 정해짐
+6. home.jsp 가서 설정해둔 속성값 el코드로 출력됨
+
